@@ -13,9 +13,7 @@ RUN mkdir -p /var/log/mysql && chown -R mysql:root /var/log/mysql
 RUN mkdir -p /var/run/mysqld && chown -R mysql:root /var/run/mysqld
 
 # Copy the MariaDB configuration file
-COPY ./conf/mariadb-server.cnf /etc/mysql/mariadb-server.cnf
 COPY ./conf/mariadb-server.cnf /etc/my.cnf.d/mariadb-server.cnf
-COPY ./conf/mariadb-server.cnf /etc/my.cnf
 COPY ./conf/init.sql /docker-entrypoint-initdb.d/
 
 # Expose the MariaDB port
