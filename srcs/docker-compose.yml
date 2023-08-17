@@ -26,7 +26,7 @@ services:
       dockerfile: Dockerfile
     container_name: nginx
     ports:
-      - "80:80"
+      - "8080:80"
     volumes:
       - ./requirements/nginx/conf/:/etc/nginx/http.d
       - wordpress:/var/www/html/wordpress
@@ -50,8 +50,6 @@ services:
       - ./.env
     volumes:
       - database:/var/lib/mysql
-    ports:
-      - "3306:3306"
     networks:
       inception:
         ipv4_address: 172.16.0.2
