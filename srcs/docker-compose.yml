@@ -8,7 +8,7 @@ services:
     env_file:
       - ./.env
     volumes:
-      - wordpress:/var/www/html/wordpress
+      - wordpress-data:/var/www/html/wordpress
     environment:
       WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
       WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
