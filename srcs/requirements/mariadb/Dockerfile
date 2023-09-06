@@ -14,8 +14,8 @@ RUN mkdir -p /var/run/mysqld && chown -R mysql:root /var/run/mysqld
 
 # Copy the MariaDB configuration file
 COPY ./conf/init.sql /docker-entrypoint-initdb.d/
-COPY ./conf/mariadb-server.cnf /etc/my.cnf.d/
-#COPY ./conf/my.cnf /etc/my.cnf
+#COPY ./conf/mariadb-server.cnf /etc/my.cnf.d/
+COPY ./conf/my.cnf /etc/my.cnf
 
 # Expose the MariaDB port
 EXPOSE 3306
