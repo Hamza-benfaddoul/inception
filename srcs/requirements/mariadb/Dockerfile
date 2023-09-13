@@ -17,12 +17,16 @@ RUN mkdir -p /var/log/mysql && chown -R mysql:root /var/log/mysql
 RUN mkdir -p /var/run/mysqld && chown -R mysql:root /var/run/mysqld
 
 # Copy the MariaDB configuration file
-COPY ./conf/init.sql /docker-entrypoint-initdb.d/
+COPY ./conf/init.sql /
 COPY ./conf/my.cnf /etc/my.cnf
+COPY ./tools/setup.sh /
+RUN chmod 777 /setup.sh
 
 # Expose the MariaDB port
 EXPOSE 3306
 
+ENTRYPOINT ["/setup.sh"]
+
 # Start MariaDB on container launch
-CMD ["mysqld", "--user=mysql"]
+CMD ["mysqld"]
 
