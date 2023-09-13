@@ -25,8 +25,8 @@ RUN chmod 777 /setup.sh
 # Expose the MariaDB port
 EXPOSE 3306
 
-ENTRYPOINT ["/setup.sh"]
+CMD ["/setup.sh"]
 
 # Start MariaDB on container launch
-CMD ["mysqld"]
+#CMD ["mysqld"]
 
