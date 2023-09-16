@@ -44,13 +44,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/hbenfadd/data
+      device: /home/hbenfadd/data/mariadb-data
       o: bind
   wordpress-data:
     driver: local
     driver_opts:
       type: none
-      device: /home/hbenfadd/data
+      device: /home/hbenfadd/data/wordpress-data
       o: bind
 networks:
   inception:

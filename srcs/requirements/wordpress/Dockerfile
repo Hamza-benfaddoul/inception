@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.18.3
 
 RUN apk update
 RUN apk add mariadb-client
@@ -11,6 +11,7 @@ ADD  https://wordpress.org/latest.tar.gz .
 RUN tar -xzvf latest.tar.gz && \
     rm -rf latest.tar.gz &&  \
     chmod -R 755 /var/www/html/wordpress
+
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
         chmod +x wp-cli.phar &&  \
         mv wp-cli.phar /usr/local/bin/wp
@@ -18,10 +19,9 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 EXPOSE 9000
 
 RUN echo "listen = wordpress:9000" >> /etc/php81/php-fpm.d/www.conf
+
 COPY  ./tools/setup.sh /
 RUN chmod 777 /setup.sh
 
-WORKDIR /
 
-#CMD ["php-fpm81", "-F"]
-CMD ["./setup.sh"]
+CMD ["sh", "/setup.sh"]
