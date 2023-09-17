@@ -9,9 +9,9 @@ config() {
   done
   echo "db initialized"
 
-  mariadb -h "localhost" -u"root"  -e " CREATE DATABASE wordpress;
-  CREATE USER 'hbenfadd'@'wordpress' IDENTIFIED BY 'root';
-  GRANT ALL PRIVILEGES ON wordpress.* TO 'hbenfadd'@'wordpress' IDENTIFIED BY 'root';
+  mariadb -h "localhost" -u"root"  -e "CREATE DATABASE wordpress;
+  CREATE USER 'hbenfadd'@'wordpress.srcs_inception' IDENTIFIED BY 'root';
+  GRANT ALL PRIVILEGES ON wordpress.* TO 'hbenfadd'@'wordpress.srcs_inception' IDENTIFIED BY 'root';
   FLUSH PRIVILEGES;
   "
 }
