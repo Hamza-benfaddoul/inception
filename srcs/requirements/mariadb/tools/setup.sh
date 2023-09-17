@@ -9,7 +9,7 @@ config() {
   done
   echo "db initialized"
 
-  mariadb -h "localhost" -r"root"  -e " CREATE DATABASE wordpress;
+  mariadb -h "localhost" -u"root"  -e " CREATE DATABASE wordpress;
   CREATE USER 'hbenfadd'@'wordpress' IDENTIFIED BY 'root';
   GRANT ALL PRIVILEGES ON wordpress.* TO 'hbenfadd'@'wordpress' IDENTIFIED BY 'root';
   FLUSH PRIVILEGES;
@@ -19,6 +19,6 @@ config() {
 # Start the MariaDB configuration function in the background
 config &
 
-# Start Mysql server
+# Execute the provided command (if any)
 exec mysqld --user=mysql
 
