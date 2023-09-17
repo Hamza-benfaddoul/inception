@@ -3,8 +3,7 @@ FROM alpine:3.18.3
 RUN apk update
 RUN apk add mariadb-client
 
-RUN apk add php php-fpm php-phar php-mysqli curl
-
+RUN apk add php php-fpm php-phar php-mysqli curl php-mbstring
 WORKDIR /var/www/html
 ADD  https://wordpress.org/latest.tar.gz .
 
@@ -24,4 +23,4 @@ COPY  ./tools/setup.sh /
 RUN chmod 777 /setup.sh
 
 
-CMD ["sh", "/setup.sh"]
+CMD ["/setup.sh"]
