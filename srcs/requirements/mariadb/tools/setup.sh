@@ -1,23 +1,22 @@
 #!/bin/sh
 
 # Function to configure MariaDB
-config() {
+config_mariadb() {
   # Wait for the database to be ready
-  until mysqladmin ping -h "localhost" -u"root" ; do
+  until mysqladmin ping -h "localhost" -u$MYSQL_ROOT_PASSWORD ; do
     echo "Waiting for MariaDB to be ready..."
     sleep 5
   done
+  mariadb -h "localhost" -u"$MYSQL_ROOT_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS $WP_DB_NAME ;
+  CREATE USER IF NOT EXISTS $WP_DB_USER@'%' IDENTIFIED BY '$WP_DB_PASSWORD'; 
+  GRANT ALL PRIVILEGES ON $WP_DB_NAME.* TO $WP_DB_USER@'%' IDENTIFIED BY '$WP_DB_PASSWORD'; 
+  FLUSH PRIVILEGES;"
+  
   echo "db initialized"
-
-  mariadb -h "localhost" -u"root"  -e "CREATE DATABASE IF NOT EXISTS wordpress; CREATE USER IF NOT EXISTS'hbenfadd'@'%' IDENTIFIED BY 'root';
-  GRANT ALL PRIVILEGES ON wordpress.* TO 'hbenfadd'@'%' IDENTIFIED BY 'root';
-  FLUSH PRIVILEGES;
-  "
 }
 
 # Start the MariaDB configuration function in the background
-config &
+config_mariadb &
 
-# Execute the provided command (if any)
-exec mysqld --user=mysql
-
+# Start mysql server
+exec mysqld
