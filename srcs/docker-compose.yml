@@ -48,6 +48,30 @@ services:
     container_name: adminer
     networks:
       inception:
+  ftp:
+    image: ftp 
+    build:
+      context: ./requirements/bonus/ftp
+      dockerfile: Dockerfile
+    container_name: ftp
+    networks:
+      inception:
+    ports:
+      - "21:21"
+    volumes:
+      - wordpress-data:/var/www/wordpress
+    env_file:
+      - ./.env
+  static_page:
+    image: static_page
+    build:
+      context: ./requirements/bonus/static_page
+      dockerfile: Dockerfile
+    container_name: static_page
+    networks:
+      inception:
+    ports:
+      - "80:80"
 
 volumes:
   mariadb-data:
