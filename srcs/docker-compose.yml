@@ -13,6 +13,7 @@ services:
       inception:
     depends_on:
       - mariadb
+      - redis
   nginx:
     image: nginx
     build:
@@ -38,6 +39,8 @@ services:
       - ./.env
     volumes:
       - mariadb-data:/var/lib/mysql
+    restart: always
+
     networks:
       inception:
   adminer:
@@ -62,6 +65,20 @@ services:
       - wordpress-data:/var/www/wordpress
     env_file:
       - ./.env
+
+  mail:
+    image: mail
+    build:
+      context: ./requirements/bonus/mail
+      dockerfile: Dockerfile
+    container_name: mail
+    networks:
+      inception:
+    ports:
+      - "25:25"
+    env_file:
+      - ./.env
+
   static_page:
     image: static_page
     build:
@@ -72,6 +89,14 @@ services:
       inception:
     ports:
       - "80:80"
+  redis:
+    image: redis
+    build:
+      context: ./requirements/bonus/redis
+      dockerfile: Dockerfile
+    container_name: redis
+    networks:
+      inception:
 
 volumes:
   mariadb-data:
