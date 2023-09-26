@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Dockerfile                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hbenfadd <hbenfadd@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/09/26 05:55:03 by hbenfadd          #+#    #+#              #
+#    Updated: 2023/09/26 05:55:14 by hbenfadd         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # Use the official Alpine Linux as the base image
 FROM alpine:3.18.3
 
@@ -27,5 +39,5 @@ COPY ./tools/setup.sh /
 RUN chmod 777 /setup.sh
 
 # Start MariaDB on container launch
-CMD ["/./setup.sh"]
+CMD ["/setup.sh"]
 

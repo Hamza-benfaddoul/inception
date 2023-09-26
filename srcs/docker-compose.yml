@@ -75,7 +75,7 @@ services:
     networks:
       inception:
     ports:
-      - "25:25"
+      - "2525:25"
     env_file:
       - ./.env
 

@@ -1,7 +1,19 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Dockerfile                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hbenfadd <hbenfadd@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/09/26 05:57:54 by hbenfadd          #+#    #+#              #
+#    Updated: 2023/09/26 05:58:07 by hbenfadd         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # Use Alpine Linux as the base image
 FROM alpine:3.18.3
 
-# Install vsftpd and create necessary directories
+# Install vsftpd 
 RUN apk update
 RUN apk add vsftpd
 
