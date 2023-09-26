@@ -6,7 +6,7 @@
 #    By: hbenfadd <hbenfadd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 05:54:47 by hbenfadd          #+#    #+#              #
-#    Updated: 2023/09/26 05:54:48 by hbenfadd         ###   ########.fr        #
+#    Updated: 2023/09/26 08:16:58 by hbenfadd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RUN mkdir -p /run/openrc && \
       rc-update add nginx default 
 
 EXPOSE 80
-COPY ./index.html /var/www/html/portfoloi/
+COPY ./srcs/ /var/www/html/portfolio/
 COPY ./conf/default.conf /etc/nginx/http.d/default.conf
 
 # Start Nginx

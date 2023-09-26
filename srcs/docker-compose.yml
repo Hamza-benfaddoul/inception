@@ -65,20 +65,6 @@ services:
       - wordpress-data:/var/www/wordpress
     env_file:
       - ./.env
-
-  mail:
-    image: mail
-    build:
-      context: ./requirements/bonus/mail
-      dockerfile: Dockerfile
-    container_name: mail
-    networks:
-      inception:
-    ports:
-      - "2525:25"
-    env_file:
-      - ./.env
-
   static_page:
     image: static_page
     build:
