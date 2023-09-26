@@ -6,15 +6,20 @@
 #    By: hbenfadd <hbenfadd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 05:40:50 by hbenfadd          #+#    #+#              #
-#    Updated: 2023/09/26 05:50:30 by hbenfadd         ###   ########.fr        #
+#    Updated: 2023/09/26 06:45:37 by hbenfadd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-all:
+all: build up
+
+up:
 	mkdir -p ~/data/wordpress-data
 	mkdir -p ~/data/mariadb-data
-	docker compose -f ./srcs/docker-compose.yml up -d --build
+	docker compose -f ./srcs/docker-compose.yml up -d
+build:
+	docker compose -f ./srcs/docker-compose.yml build
 
+build:
 down:
 	docker compose -f ./srcs/docker-compose.yml down
 logs:
