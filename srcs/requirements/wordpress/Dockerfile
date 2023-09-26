@@ -6,7 +6,7 @@
 #    By: hbenfadd <hbenfadd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 05:55:31 by hbenfadd          #+#    #+#              #
-#    Updated: 2023/09/26 05:56:18 by hbenfadd         ###   ########.fr        #
+#    Updated: 2023/09/26 06:58:37 by hbenfadd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ ADD  https://wordpress.org/latest.tar.gz .
 
 RUN tar -xzvf latest.tar.gz && \
     rm -rf latest.tar.gz &&  \
-    chmod -R 755 /var/www/html/wordpress
+    chmod -R 755 /var/www/html/wordpress && \
+    chmod -R 777 /var/www/html/wordpress/wp-content
+
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
         chmod +x wp-cli.phar &&  \
