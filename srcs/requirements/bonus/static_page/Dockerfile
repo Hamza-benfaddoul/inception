@@ -13,15 +13,10 @@
 FROM alpine:3.18.3
 
 RUN apk update
-RUN apk add nginx openrc
+RUN apk add  npm
 
-RUN mkdir -p /run/openrc && \
-      touch /run/openrc/softlevel && \
-      rc-update add nginx default 
+COPY ./srcs/website /var/www/html/website
+workdir /var/www/html/website
+RUN npm i
 
-EXPOSE 80
-COPY ./srcs/ /var/www/html/portfolio/
-COPY ./conf/default.conf /etc/nginx/http.d/default.conf
-
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "start"]

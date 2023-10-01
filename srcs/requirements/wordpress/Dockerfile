@@ -21,8 +21,7 @@ ADD  https://wordpress.org/latest.tar.gz .
 
 RUN tar -xzvf latest.tar.gz && \
     rm -rf latest.tar.gz &&  \
-    chmod -R 755 /var/www/html/wordpress && \
-    chmod -R 777 /var/www/html/wordpress/wp-content
+    chmod -R 755 /var/www/html/wordpress
 
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
