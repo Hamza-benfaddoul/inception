@@ -23,16 +23,17 @@ configure_wordpress(){
     wp config set EP_HOST         http://$ES_HOST:$ES_PORT  --path="$WP_PATH"
 
     echo "wp-config.php created."
-
-    wp user create "$WP_EDITOR_USER" "$WP_EDITOR_EMAIL" --user_pass="$WP_EDITOR_PASSWORD" \
-        --role=editor --path="$WP_PATH"
-    echo "User '$WP_EDITOR_USER' created."
-
     echo "Install WordPress"
     wp core install --url=$DOMAIN_NAME  --title="inception" --admin_user=$WP_ADMIN_USER \
       --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --path="$WP_PATH"
-
-    # Install redis-cache plugin
+    wp user create --allow-root "$WP_EDITOR_USER" "$WP_EDITOR_EMAIL" --user_pass="$WP_EDITOR_PASSWORD" \
+        --role=editor --path="$WP_PATH"
+    if [ $? -eq 0 ]; then
+	    echo "User '$WP_EDITOR_USER' created."
+    else
+	    echo "Error for create User '$WP_EDITOR_USER'"
+    fi
+        # Install redis-cache plugin
     wp plugin install  redis-cache --activate   --path="$WP_PATH" 
     wp redis enable                             --path="$WP_PATH"
 
@@ -44,7 +45,7 @@ configure_wordpress(){
         wp plugin install  elasticpress             --path="$WP_PATH"
         wp plugin activate elasticpress             --path="$WP_PATH"
         while true; do
-          wp elasticpress    sync                     --path="$WP_PATH"
+          wp elasticpress    sync                     --path="$WP_PATH" 2>/dev/null
           if [ $? -eq 0 ]; then
             echo "Elasticsearch synchronization successful."
             break
